@@ -1,0 +1,31 @@
+! ============================================================
+! Router0 - Cisco 1841 - LAN 1 gateway
+! Fa0/0 -> Switch0 (LAN 1)      Fa0/1 -> Router1 (inter-router link)
+! ============================================================
+enable
+configure terminal
+!
+hostname Router0
+no ip domain-lookup
+!
+interface FastEthernet0/0
+ description LAN1 - Connected to Switch0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ exit
+!
+interface FastEthernet0/1
+ description WAN - Point-to-Point Link to Router1
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+ exit
+!
+! Static route: to reach LAN 2, send traffic to Router1 (10.0.0.2)
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+!
+line console 0
+ logging synchronous
+ exit
+!
+end
+write memory

@@ -1,0 +1,27 @@
+! ============================================================
+! Switch1 - Cisco 2950-24 - LAN 2
+! Fa0/1 -> Router1 Fa0/0 | Fa0/2 -> Server0
+! ============================================================
+enable
+configure terminal
+!
+hostname Switch1
+no ip domain-lookup
+!
+interface FastEthernet0/1
+ description Uplink to Router1 Fa0/0
+ exit
+interface FastEthernet0/2
+ description Connected to Server0
+ exit
+!
+! Optional management address (VLAN 1)
+interface Vlan1
+ description Management Interface
+ ip address 192.168.2.2 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.2.1
+!
+end
+write memory

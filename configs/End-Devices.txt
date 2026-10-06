@@ -1,0 +1,5 @@
+End device settings (Packet Tracer: click device > Desktop > IP Configuration > Static)
+
+PC0     IP: 192.168.1.10  Mask: 255.255.255.0  Gateway: 192.168.1.1
+PC1     IP: 192.168.1.11  Mask: 255.255.255.0  Gateway: 192.168.1.1
+Server0 IP: 192.168.2.10  Mask: 255.255.255.0  Gateway: 192.168.2.1

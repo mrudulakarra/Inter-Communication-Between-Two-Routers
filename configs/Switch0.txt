@@ -1,0 +1,33 @@
+! ============================================================
+! Switch0 - Cisco 2950-24 - LAN 1
+! Fa0/1 -> Router0 Fa0/0 | Fa0/2 -> PC0 | Fa0/3 -> PC1
+! A 2950 works as a Layer 2 switch with no configuration;
+! the config below only adds a name, descriptions and an
+! OPTIONAL management IP (so you can ping the switch itself).
+! ============================================================
+enable
+configure terminal
+!
+hostname Switch0
+no ip domain-lookup
+!
+interface FastEthernet0/1
+ description Uplink to Router0 Fa0/0
+ exit
+interface FastEthernet0/2
+ description Connected to PC0
+ exit
+interface FastEthernet0/3
+ description Connected to PC1
+ exit
+!
+! Optional management address (VLAN 1)
+interface Vlan1
+ description Management Interface
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.1.1
+!
+end
+write memory
